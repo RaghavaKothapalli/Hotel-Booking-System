@@ -6,7 +6,6 @@ interface HotelCardProps {
   hotel: Hotel;
 }
 
-
 const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105">

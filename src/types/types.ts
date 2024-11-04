@@ -7,7 +7,6 @@ export interface Hotel {
     pricePerNight: number;
   }
   
-  
   export interface City {
     name: string;
     popularLocalities: string[];
