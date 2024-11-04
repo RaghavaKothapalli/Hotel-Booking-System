@@ -17,6 +17,7 @@ const mockHotels: Hotel[] = [
   // Add more mock hotels...
 ]
 
+
 const mockCities: City[] = [
   { 
     name: 'Bangalore', 
