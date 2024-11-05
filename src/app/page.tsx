@@ -1,65 +1,185 @@
-'use client'
+"use client";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import React, { useState } from 'react'
-import Layout from '../components/Layouts'
-import HotelCard from '../components/HotelCard'
-import { Hotel, City } from '../types/types'
+interface CityPopup {
+  title: string;
+  localities: string[];
+}
 
-const mockHotels: Hotel[] = [
+interface City {
+  name: string;
+  slug: string;
+  popup: CityPopup;
+}
+
+const cities: City[] = [
   {
-    id: 1,
-    name: 'Luxury Hotel & Spa',
-    rating: 4.5,
-    location: 'Downtown Area, City Center',
-    imageUrl: '/images/hotel2.avif' ,
-    pricePerNight: 2999
+    name: 'Bangalore',
+    slug: 'bangalore',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['Koramangala', 'MG Road', 'Rajaji Nagar']
+    }
   },
-  // Add more mock hotels...
-]
-
-const mockCities: City[] = [
-  { 
-    name: 'Bangalore', 
-    popularLocalities: ['Koramangala', 'MG Road', 'Rajaji Nagar'] 
+  {
+    name: 'Chennai',
+    slug: 'chennai',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['T. Nagar', 'Adyar', 'Egmore']
+    }
   },
-  // Add more cities...
-]
+  // Add other cities similarly...
+];
 
-const HomePage: React.FC = () => {
-  const [searchLocation, setSearchLocation] = useState('')
-  const [checkIn, setCheckIn] = useState('')
-  const [checkOut, setCheckOut] = useState('')
+const NavLink = ({ children, href }: { children: React.ReactNode; href: string }) => (
+  <Link href={href} className="nav-link text-center">
+    {children}
+  </Link>
+);
+
+export default function HomePage() {
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [guestCount, setGuestCount] = useState('1 Room, 1 Guest');
 
   return (
-    <Layout>
-      <div className="bg-gradient-overlay bg-cover bg-center text-white py-16">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-6">Over 174,000+ hotels and homes across 35+ countries</h1>
+    <div className="min-h-screen bg-gray-50 w-full">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex">
+              <Link href="main" className="flex items-center">
+                <span className="text-2xl font-bold text-red-500">OYO</span>
+              </Link>
+            </div>
+            
+            <div className="hidden md:flex items-center space-x-4">
+              <NavLink href="/membership">
+                <div>
+                  <span className="font-bold">Become a Member</span>
+                  <span className="block text-sm text-gray-500">10% off on stays</span>
+                </div>
+              </NavLink>
+              
+              <NavLink href="/business">
+                <div>
+                  <span className="font-bold">OYO for Business</span>
+                  <span className="block text-sm text-gray-500">Trusted by 5000 Corporates</span>
+                </div>
+              </NavLink>
+              
+              <NavLink href="/list-property">
+                <div>
+                  <span className="font-bold">List your property</span>
+                  <span className="block text-sm text-gray-500">Start earning in 30 mins</span>
+                </div>
+              </NavLink>
+              
+              <NavLink href="tel:0123-6201611">
+                <div>
+                  <span className="font-bold">0123-6201611</span>
+                  <span className="block text-sm text-gray-500">Call us to Book now</span>
+                </div>
+              </NavLink>
+              
+              <button className="bg-red-500 text-white px-4 py-2 rounded-md">
+                Login / Signup
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      
+
+      {/* Cities Grid */}
+      <div className=" mx-auto px-4 sm:px-6 lg:px-0 py-0 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-1">
+          {cities.map((city) => (
+            <div 
+              key={city.slug}
+              className="relative"
+              onMouseEnter={() => setSelectedCity(city.slug)}
+              onMouseLeave={() => setSelectedCity(null)}
+            >
+              <button className="w-full p-4 text-left flex justify-between items-center">
+                  <h2 className="text-xl font-semibold">{city.name}</h2>
+                    <span>›</span>
+              </button>
+              
+              {selectedCity === city.slug && (
+                <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-md p-4 z-10">
+                  <strong>{city.popup.title}</strong>
+                  {city.popup.localities.map((locality) => (
+                    <Link
+                      key={locality}
+                      href={`/${city.slug}/${locality.toLowerCase().replace(' ', '-')}`}
+                      className="block mt-2 hover:text-red-500"
+                    >
+                      {locality}
+                    </Link>
+                  ))}
+                  <Link
+                    href={`/${city.slug}`}
+                    className="block mt-4 text-red-500 hover:text-red-600"
+                  >
+                    All of {city.name}
+                  </Link>
+                </div>
+              )}
+            </div>
+          ))}
           
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-4 gap-4">
-              <input 
-                type="text" 
-                placeholder="Location" 
-                value={searchLocation}
-                onChange={(e) => setSearchLocation(e.target.value)}
-                className="p-3 border rounded"
-              />
-              <input 
-                type="date" 
-                placeholder="Check In" 
-                value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                className="p-3 border rounded"
-              />
-              <input 
-                type="date" 
-                placeholder="Check Out" 
-                value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
-                className="p-3 border rounded"
-              />
-              <button className="bg-green-500 text-white p-3 rounded hover:bg-green-600">
+          <Link 
+            href="/all-cities"
+            className="p-4 text-left"
+          >
+            <h2 className="text-xl font-semibold">All Cities</h2>
+          </Link>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <div className="relative bg-gray-900 h-[300px] sm:h-auto">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <h1 className="text-4xl font-bold text-white text-center mb-8">
+            Over 174,000+ hotels and homes across 35+ countries
+          </h1>
+          
+          {/* Search Widget */}
+          <div className="bg-white  rounded-lg p-4 mx-auto w-full">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search by city, hotel, or neighborhood"
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+              
+              <div className="relative">
+                <input
+                  type="date"
+                  className="w-full p-2 border rounded-md"
+                />
+              </div>
+              
+              <div className="relative">
+                <select 
+                  value={guestCount}
+                  onChange={(e) => setGuestCount(e.target.value)}
+                  className="w-full p-2 border rounded-md"
+                >
+                  <option>1 Room, 1 Guest</option>
+                  <option>1 Room, 2 Guests</option>
+                  <option>2 Rooms, 4 Guests</option>
+                </select>
+              </div>
+              
+              <button className="w-full bg-red-500 text-white p-2 rounded-md">
                 Search
               </button>
             </div>
@@ -67,34 +187,61 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      <div className="container mx-auto my-12">
-        <div className="grid md:grid-cols-3 gap-6">
-          {mockHotels.map(hotel => (
-            <HotelCard key={hotel.id} hotel={hotel} />
-          ))}
+      {/* Promotional Banners */}
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="space-y-4">
+          <div>
+            <Image
+              src="/images/Banner1.avif"
+              alt="OYO Promotion"
+              width={1200}
+              height={300}
+              className="rounded-lg w-full"
+            />
+          </div>
+          <div>
+            <Image
+              src="/images/Banner2.avif"
+              alt="OYO Promotion"
+              width={1200}
+              height={300}
+              className="rounded-lg w-full"
+            />
+          </div>
         </div>
       </div>
 
-      <div className="container mx-auto my-12">
-        <h2 className="text-2xl font-bold mb-6">Popular Cities</h2>
-        <div className="grid md:grid-cols-4 gap-4">
-          {mockCities.map(city => (
-            <div 
-              key={city.name} 
-              className="border p-4 rounded hover:shadow-lg transition-all cursor-pointer"
-            >
-              <h3 className="text-xl font-semibold">{city.name}</h3>
-              <div className="mt-2 text-gray-600">
-                {city.popularLocalities.map(locality => (
-                  <p key={locality} className="text-sm">{locality}</p>
-                ))}
+      {/* Subscription Box */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="bg-white shadow-sm rounded-lg p-6">
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <div className="flex-shrink-0">
+              <svg className="w-8 h-8" viewBox="0 0 24 24">
+                <path fill="#FF4B4B" d="M12 23c6.075 0 11-4.925 11-11S18.075 1 12 1 1 5.925 1 12s4.925 11 11 11z" />
+                <path fill="#FFB6B6" d="M12 4.5c-2.75 3.5-4.5 5.5-4.5 8.25 0 2.5 2 4.5 4.5 4.5s4.5-2 4.5-4.5c0-2.75-1.75-4.75-4.5-8.25z" />
+              </svg>
+            </div>
+            
+            <div className="md:w-1/3">
+              <h2 className="text-xl font-bold">Get access to exclusive deals</h2>
+              <p className="text-gray-600">Only the best deals reach your inbox</p>
+            </div>
+            
+            <div className="flex-1">
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 p-2 border rounded-md"
+                />
+                <button className="bg-red-500 text-white px-6 py-2 rounded-md">
+                  Notify me
+                </button>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
-    </Layout>
-  )
+    </div>
+  );
 }
-
-export default HomePage
