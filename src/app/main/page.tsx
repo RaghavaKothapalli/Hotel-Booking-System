@@ -14,11 +14,11 @@ const Home: React.FC = () => (
           <Filters />
         </aside>
         <section className="w-full md:w-3/4 space-y-4">
-          <HotelCard title="Luxury Hotel & Spa" location="Downtown Area, City Center" price={2999} rating={4.5} image="hotel1.jpg" />
-          <HotelCard title="Business Hotel" location="Business District, City Center" price={1999} rating={4.2} image="hotel2.jpg" />
-          <HotelCard title="Hotel A" location="Hitech City, City Center" price={4999} rating={4.9} image="hotel3.jpg" />
-          <HotelCard title="Hotel B" location="District, Shopping Mall" price={3599} rating={4.5} image="hotel4.jpg" />
-          <HotelCard title="Hotel C" location="Business Complex, City Center" price={2999} rating={4.2} image="hotel5.jpg" />
+          <HotelCard title="Luxury Hotel & Spa" location="Downtown Area, City Center" price={2999} rating={4.5} image="images/hotel1.avif" />
+          <HotelCard title="Business Hotel" location="Business District, City Center" price={1999} rating={4.2} image="images/hotel2.avif" />
+          <HotelCard title="Hotel A" location="Hitech City, City Center" price={4999} rating={4.9} image="images/hotel3.avif" />
+          <HotelCard title="Hotel B" location="District, Shopping Mall" price={3599} rating={4.5} image="images/hotel4.avif" />
+          <HotelCard title="Hotel C" location="Business Complex, City Center" price={2999} rating={4.2} image="images/hotel5.avif" />
         </section>
       </div>
     </main>
