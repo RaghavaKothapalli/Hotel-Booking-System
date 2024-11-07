@@ -35,6 +35,63 @@ const cities: City[] = [
     }
   },
   // Add other cities similarly...
+  {
+    name: 'Delhi',
+    slug: 'Delhi',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['Rohini', 'Saket', 'Janakpuri']
+    }
+  },
+  {
+    name: 'Gurgaon',
+    slug: 'Gurgaon',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['Sector 14', 'Sikanderpur', 'Sector 38']
+    }
+  },
+  {
+    name: 'Hyderabad',
+    slug: 'Hyderabad',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['Ameerpet', 'Madhapur', 'Kukatpally']
+    }
+  },
+  {
+    name: 'Kolkata',
+    slug: 'Kolkata',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['Chinar Park', 'Barasat', 'New Town']
+    }
+  },
+  {
+    name: 'Mumbai',
+    slug: 'Mumbai',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['Colaba', 'Bandra', 'Thane']
+    }
+  },
+  {
+    name: 'Pune',
+    slug: 'Pune',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['Baner', 'Wakad', 'Kharadi']
+    }
+  },
+  {
+    name: 'Noida',
+    slug: 'Noida',
+    popup: {
+      title: 'Popular Localities',
+      localities: ['Greater Noida', 'Khora Colony', 'Noida City Centre']
+    }
+  },
+  
 ];
 
 const NavLink = ({ children, href }: { children: React.ReactNode; href: string }) => (
@@ -88,7 +145,9 @@ export default function HomePage() {
                 </div>
               </NavLink>
               
-              <Login />
+              <button className="bg-red-500 text-white px-4 py-2 rounded-md">
+                Login / Signup
+              </button>
             </div>
           </div>
         </div>
@@ -98,7 +157,7 @@ export default function HomePage() {
 
       {/* Cities Grid */}
       <div className=" mx-auto px-4 sm:px-6 lg:px-0 py-0 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-11 gap-1">
           {cities.map((city) => (
             <div 
               key={city.slug}
