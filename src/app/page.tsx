@@ -1,4 +1,5 @@
 "use client";
+import Login from './components/Login';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -87,9 +88,7 @@ export default function HomePage() {
                 </div>
               </NavLink>
               
-              <button className="bg-red-500 text-white px-4 py-2 rounded-md">
-                Login / Signup
-              </button>
+              <Login />
             </div>
           </div>
         </div>
