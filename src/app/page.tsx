@@ -1,10 +1,10 @@
 "use client";
-import Login from './components/Login';
+import Login from './components/LoginForm';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Navbar from './components/Navbar1';
 import { auth } from './firebase';
-
 
 interface CityPopup {
   title: string;
@@ -34,10 +34,9 @@ const cities: City[] = [
       localities: ['T. Nagar', 'Adyar', 'Egmore']
     }
   },
-  // Add other cities similarly...
   {
     name: 'Delhi',
-    slug: 'Delhi',
+    slug: 'delhi',
     popup: {
       title: 'Popular Localities',
       localities: ['Rohini', 'Saket', 'Janakpuri']
@@ -45,7 +44,7 @@ const cities: City[] = [
   },
   {
     name: 'Gurgaon',
-    slug: 'Gurgaon',
+    slug: 'gurgaon',
     popup: {
       title: 'Popular Localities',
       localities: ['Sector 14', 'Sikanderpur', 'Sector 38']
@@ -53,7 +52,7 @@ const cities: City[] = [
   },
   {
     name: 'Hyderabad',
-    slug: 'Hyderabad',
+    slug: 'hyderabad',
     popup: {
       title: 'Popular Localities',
       localities: ['Ameerpet', 'Madhapur', 'Kukatpally']
@@ -61,7 +60,7 @@ const cities: City[] = [
   },
   {
     name: 'Kolkata',
-    slug: 'Kolkata',
+    slug: 'kolkata',
     popup: {
       title: 'Popular Localities',
       localities: ['Chinar Park', 'Barasat', 'New Town']
@@ -69,7 +68,7 @@ const cities: City[] = [
   },
   {
     name: 'Mumbai',
-    slug: 'Mumbai',
+    slug: 'mumbai',
     popup: {
       title: 'Popular Localities',
       localities: ['Colaba', 'Bandra', 'Thane']
@@ -77,7 +76,7 @@ const cities: City[] = [
   },
   {
     name: 'Pune',
-    slug: 'Pune',
+    slug: 'pune',
     popup: {
       title: 'Popular Localities',
       localities: ['Baner', 'Wakad', 'Kharadi']
@@ -85,13 +84,12 @@ const cities: City[] = [
   },
   {
     name: 'Noida',
-    slug: 'Noida',
+    slug: 'noida',
     popup: {
       title: 'Popular Localities',
       localities: ['Greater Noida', 'Khora Colony', 'Noida City Centre']
     }
-  },
-  
+  }
 ];
 
 const NavLink = ({ children, href }: { children: React.ReactNode; href: string }) => (
@@ -107,53 +105,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50 w-full">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm">
-        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex">
-              <Link href="main" className="flex items-center">
-                <span className="text-2xl font-bold text-red-500">OYO</span>
-              </Link>
-            </div>
-            
-            <div className="hidden md:flex items-center space-x-4">
-              <NavLink href="/membership">
-                <div>
-                  <span className="font-bold">Become a Member</span>
-                  <span className="block text-sm text-gray-500">10% off on stays</span>
-                </div>
-              </NavLink>
-              
-              <NavLink href="/business">
-                <div>
-                  <span className="font-bold">OYO for Business</span>
-                  <span className="block text-sm text-gray-500">Trusted by 5000 Corporates</span>
-                </div>
-              </NavLink>
-              
-              <NavLink href="/list-property">
-                <div>
-                  <span className="font-bold">List your property</span>
-                  <span className="block text-sm text-gray-500">Start earning in 30 mins</span>
-                </div>
-              </NavLink>
-              
-              <NavLink href="tel:0123-6201611">
-                <div>
-                  <span className="font-bold">0123-6201611</span>
-                  <span className="block text-sm text-gray-500">Call us to Book now</span>
-                </div>
-              </NavLink>
-              
-              <button className="bg-red-500 text-white px-4 py-2 rounded-md">
-                Login / Signup
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      
+      <Navbar />
 
       {/* Cities Grid */}
       <div className=" mx-auto px-4 sm:px-6 lg:px-0 py-0 w-full">
@@ -167,7 +119,7 @@ export default function HomePage() {
             >
               <button className="w-full p-4 text-left flex justify-between items-center">
                   <h2 className="text-xl font-semibold">{city.name}</h2>
-                    <span>›</span>
+                  <span>›</span>
               </button>
               
               {selectedCity === city.slug && (
@@ -203,14 +155,14 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section */}
-      <div className="relative bg-gray-900 h-[300px] sm:h-auto">
-        <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div className="relative bg-gray-900  sm:h-auto">
+        <div className="w-auto mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <h1 className="text-4xl font-bold text-white text-center mb-8">
             Over 174,000+ hotels and homes across 35+ countries
           </h1>
           
           {/* Search Widget */}
-          <div className="bg-white  rounded-lg p-4 mx-auto w-full">
+          <div className="bg-white rounded-lg p-4 mx-auto w-full">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <div className="relative">
                 <input
@@ -272,7 +224,7 @@ export default function HomePage() {
       </div>
 
       {/* Subscription Box */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="bg-white shadow-sm rounded-lg p-6">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="flex-shrink-0">
