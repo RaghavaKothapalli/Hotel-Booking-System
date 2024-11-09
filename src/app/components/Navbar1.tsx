@@ -2,6 +2,7 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import SignUp from '../Sign-up/page';
 
 const NavLink = ({ children, href }: { children: React.ReactNode; href: string }) => (
   <Link href={href} className="nav-link text-center">
@@ -19,7 +20,7 @@ export default function Navbar() {
         <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
-              <Link href="/" className="flex items-center">
+              <Link href="/main" className="flex items-center">
                 <span className="text-2xl font-bold text-red-500">OYO</span>
               </Link>
             </div>
@@ -48,10 +49,10 @@ export default function Navbar() {
                   <span className="block text-sm text-gray-500">Call us to Book now</span>
                 </div>
               </NavLink>
-              <button
+              <button 
                 className="bg-red-500 text-white px-4 py-2 rounded-md"
               >
-                Login / Signup
+                <Link href='/up-and-in'>Signup/Signin</Link>
               </button>
             </div>
           </div>
