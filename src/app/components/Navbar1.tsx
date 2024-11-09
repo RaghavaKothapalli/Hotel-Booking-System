@@ -2,7 +2,6 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import LoginForm from './LoginForm';
 
 const NavLink = ({ children, href }: { children: React.ReactNode; href: string }) => (
   <Link href={href} className="nav-link text-center">
@@ -50,7 +49,6 @@ export default function Navbar() {
                 </div>
               </NavLink>
               <button
-                onClick={() => setIsLoginFormOpen(true)}
                 className="bg-red-500 text-white px-4 py-2 rounded-md"
               >
                 Login / Signup
@@ -60,8 +58,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* LoginForm component will appear if isLoginFormOpen is true */}
-      {isLoginFormOpen && <LoginForm onClose={() => setIsLoginFormOpen(false)} />}
     </>
   );
 }

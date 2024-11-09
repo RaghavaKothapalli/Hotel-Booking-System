@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from './components/Navbar1';
-import { auth } from './firebase';
+import { auth } from './firebase/config';
 
 interface CityPopup {
   title: string;
