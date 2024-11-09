@@ -1,6 +1,6 @@
 // src/components/Hotels.tsx
 import { useState, useEffect } from 'react';
-import { db } from '../firebase';
+import { db } from '../firebase/config';
 import { collection, addDoc, getDocs, query } from 'firebase/firestore';
 
 interface Hotel {
