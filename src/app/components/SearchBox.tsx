@@ -15,8 +15,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   };
 
   return (
-    <section className="bg-gray-100 py-6 w-full sticky top-[4rem] z-20"> {/* Adjust for navbar height */}
-      <div className="container mx-auto px-4">
+    <section className="bg-gray-100 py-4 w-full sticky top-[4rem] z-20"> {/* Adjust for navbar height */}
+      <div className="container-fluid mx-4 px-4">
         
       <h1 className="text-3xl font-bold text-center mb-6">Find and Book Your Perfect Stay</h1>
         <form onSubmit={handleSubmit} className="flex flex-wrap gap-4">
