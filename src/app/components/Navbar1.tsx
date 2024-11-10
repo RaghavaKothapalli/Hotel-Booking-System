@@ -1,8 +1,6 @@
-// src/app/components/Navbar.tsx
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import SignUp from '../Sign-up/page';
 
 const NavLink = ({ children, href }: { children: React.ReactNode; href: string }) => (
   <Link href={href} className="nav-link text-center">
@@ -11,8 +9,12 @@ const NavLink = ({ children, href }: { children: React.ReactNode; href: string }
 );
 
 export default function Navbar() {
-  // State to control the visibility of the login form
+  // State to control the visibility of the login form and dropdown menu
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);  // State for the dropdown menu
+
+  // Toggle the dropdown menu visibility
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <>
@@ -24,7 +26,21 @@ export default function Navbar() {
                 <span className="text-2xl font-bold text-red-500">OYO</span>
               </Link>
             </div>
-            <div className="hidden md:flex items-center space-x-4">
+
+            {/* Hamburger Menu Icon for Mobile (Three Line Icon) */}
+            <div className="flex items-center lg:hidden">
+              <button 
+                onClick={toggleMenu} 
+                className="flex flex-col justify-between items-center space-y-1"
+              >
+                <div className="w-6 h-1 bg-red-500"></div> {/* Top line */}
+                <div className="w-6 h-1 bg-red-500"></div> {/* Middle line */}
+                <div className="w-6 h-1 bg-red-500"></div> {/* Bottom line */}
+              </button>
+            </div>
+
+            {/* Menu Items (Desktop and Tablet view) */}
+            <div className="hidden lg:flex items-center space-x-4">
               <NavLink href="/membership">
                 <div>
                   <span className="font-bold">Become a Member</span>
@@ -52,13 +68,29 @@ export default function Navbar() {
               <button 
                 className="bg-red-500 text-white px-4 py-2 rounded-md"
               >
-                <Link href='/up-and-in'>Signup/Signin</Link>
+                <Link href='/Sign-in'>Sign-in</Link>
+              </button>
+              <button 
+                className="bg-red-500 text-white px-4 py-2 rounded-md"
+              >
+                <Link href='/Sign-up'>Sign-up</Link>
               </button>
             </div>
           </div>
         </div>
-      </nav>
 
+        {/* Mobile Dropdown Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden bg-white shadow-md absolute top-16 left-0 w-full p-4 flex flex-col space-y-4 z-50">
+            <NavLink href="/membership">Become a Member</NavLink>
+            <NavLink href="/business">OYO for Business</NavLink>
+            <NavLink href="/list-property">List your property</NavLink>
+            <NavLink href="tel:0123-6201611">0123-6201611</NavLink>
+            <NavLink href='/Sign-in'>Sign-in</NavLink>
+            <NavLink href='/Sign-up'>Sign-up</NavLink>
+          </div>
+        )}
+      </nav>
     </>
   );
 }
