@@ -62,7 +62,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-white-900">
       <div className="bg-gray-800 p-10 rounded-lg shadow-xl w-96">
         <h1 className="text-white text-2xl mb-5">Sign Up</h1>
         
@@ -104,7 +104,7 @@ const SignUp: React.FC = () => {
         <p className="mt-4 text-center text-gray-400 text-sm">
           Already have an account?{' '}
           <button
-            onClick={() => router.push('/signin')}
+            onClick={() => router.push('/Sign-in')}
             className="text-indigo-400 hover:text-indigo-300 focus:outline-none focus:underline"
           >
             Sign in

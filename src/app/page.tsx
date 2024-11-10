@@ -108,7 +108,7 @@ export default function HomePage() {
 
       {/* Cities Grid */}
       <div className=" mx-auto px-4 sm:px-6 lg:px-0 py-0 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-11 gap-1">
+        <div className=" grid-cols-1 md:grid-cols-3 lg:grid-cols-11 gap-1  hidden lg:grid">
           {cities.map((city) => (
             <div 
               key={city.slug}
