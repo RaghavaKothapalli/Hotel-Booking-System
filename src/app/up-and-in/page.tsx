@@ -62,7 +62,7 @@ const AuthPage: React.FC = () => {
   const toggleForm = () => setIsSignUp(!isSignUp);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center bg-white-900">
       <div className="bg-gray-800 p-10 rounded-lg shadow-xl w-96">
         <h1 className="text-white text-2xl mb-5">{isSignUp ? 'Sign Up' : 'Sign In'}</h1>
 
