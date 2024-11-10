@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from '../components/Navbar';
 import SearchBox from '../components/SearchBox';
 import Filters from '../components/Filters';
@@ -10,7 +10,9 @@ import { collection, getDocs } from "firebase/firestore";
 
 const Home: React.FC = () => {
   const [hotels, setHotels] = useState<any[]>([]);
+  const [filteredHotels, setFilteredHotels] = useState<any[]>([]);
 
+  // Fetch hotels from Firebase
   const fetchHotels = async () => {
     const querySnapshot = await getDocs(collection(db, "hotels"));
     const hotelList: any[] = [];
@@ -18,23 +20,34 @@ const Home: React.FC = () => {
       hotelList.push({ id: doc.id, ...doc.data() });
     });
     setHotels(hotelList);
+    setFilteredHotels(hotelList); // Initially show all hotels
   };
 
   useEffect(() => {
     fetchHotels();
   }, []);
 
+  // Handle search functionality
+  const handleSearch = ({ name, location }: { name: string; location: string }) => {
+    const searchResults = hotels.filter((hotel) => {
+      const hotelNameMatch = hotel.title.toLowerCase().includes(name.toLowerCase());
+      const locationMatch = hotel.location.toLowerCase().includes(location.toLowerCase());
+      return hotelNameMatch && locationMatch;
+    });
+    setFilteredHotels(searchResults);
+  };
+
   return (
     <>
       <Navbar />
       <main className="mt-20">
-        <SearchBox />
+        <SearchBox onSearch={handleSearch} />
         <div className="container mx-auto flex flex-col md:flex-row gap-8 mt-8">
           <aside className="w-full md:w-1/4">
             <Filters />
           </aside>
           <section className="w-full md:w-3/4 space-y-4">
-            {hotels.map((hotel) => (
+            {filteredHotels.map((hotel) => (
               <HotelCard
                 key={hotel.id}
                 title={hotel.title}
