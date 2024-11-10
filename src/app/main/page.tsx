@@ -42,7 +42,7 @@ const Home: React.FC = () => {
       <Navbar />
       <main className="mt-20">
         <SearchBox onSearch={handleSearch} />
-        <div className="container mx-auto flex flex-col md:flex-row gap-8 mt-8">
+        <div className="container mx-auto flex p-4 flex-col md:flex-row gap- mt-8">
           <aside className="w-full md:w-1/4">
             <Filters />
           </aside>
