@@ -18,15 +18,15 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     <section className="bg-gray-100 py-4 w-full sticky top-[4rem] z-20"> {/* Adjust for navbar height */}
       <div className="container-fluid mx-4 px-4">
         
-      <h1 className="text-3xl font-bold text-center mb-6">Find and Book Your Perfect Stay</h1>
+      <h1 className="text-3xl font-bold text-black text-center mb-6">Find and Book Your Perfect Stay</h1>
         <form onSubmit={handleSubmit} className="flex flex-wrap gap-4">
           <div className="flex-1 min-w-[200px]">
-            <label className="block text-gray-700">Hotel Name</label>
+            <label className="block text-black">Hotel Name</label>
             <input
               type="text"
               value={hotelName}
               onChange={(e) => setHotelName(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded text-black"
               placeholder="Hotel Name"
             />
           </div>
@@ -36,7 +36,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded text-black"
               placeholder="Location"
             />
           </div>
