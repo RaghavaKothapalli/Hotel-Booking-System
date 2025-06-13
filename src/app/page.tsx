@@ -102,7 +102,7 @@ export default function HomePage() {
   const [guestCount, setGuestCount] = useState('1 Room, 1 Guest');
 
   return (
-    <div className="min-h-screen bg-gray-50 w-full">
+    <div className="min-h-screen bg-gray-50  text-black w-full">
       {/* Navigation */}
       <Navbar />
 
@@ -148,7 +148,7 @@ export default function HomePage() {
             href="/all-cities"
             className="p-4 text-left"
           >
-            <h2 className="text-xl font-semibold">All Cities</h2>
+            <h2 className="text-xl font-semibold text-black">All Cities</h2>
           </Link>
         </div>
       </div>

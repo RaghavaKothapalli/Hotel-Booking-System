@@ -23,7 +23,7 @@ export default function Navbar() {
           <div className="flex justify-between h-16">
             <div className="flex">
               <Link href="/main" className="flex items-center">
-                <span className="text-2xl font-bold text-red-500">OYO</span>
+                <span className="text-2xl font-bold text-red-500">Hotel Booking</span>
               </Link>
             </div>
 
@@ -43,35 +43,35 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center space-x-4">
               <NavLink href="/membership">
                 <div>
-                  <span className="font-bold">Become a Member</span>
-                  <span className="block text-sm text-gray-500">10% off on stays</span>
+                  <span className="font-bold text-black">Become a Member</span>
+                  <span className="block text-sm text-black">10% off on stays</span>
                 </div>
               </NavLink>
               <NavLink href="/business">
                 <div>
-                  <span className="font-bold">OYO for Business</span>
-                  <span className="block text-sm text-gray-500">Trusted by 5000 Corporates</span>
+                  <span className="font-bold text-black">OYO for Business</span>
+                  <span className="block text-sm text-black">Trusted by 5000 Corporates</span>
                 </div>
               </NavLink>
               <NavLink href="/list-property">
                 <div>
-                  <span className="font-bold">List your property</span>
-                  <span className="block text-sm text-gray-500">Start earning in 30 mins</span>
+                  <span className="font-bold text-black">List your property</span>
+                  <span className="block text-sm text-black">Start earning in 30 mins</span>
                 </div>
               </NavLink>
               <NavLink href="tel:0123-6201611">
                 <div>
-                  <span className="font-bold">0123-6201611</span>
-                  <span className="block text-sm text-gray-500">Call us to Book now</span>
+                  <span className="font-bold text-black">0123-6201611</span>
+                  <span className="block text-sm text-black">Call us to Book now</span>
                 </div>
               </NavLink>
               <button 
-                className="bg-red-500 text-white px-4 py-2 rounded-md"
+                className="bg-red-500 text-black px-4 py-2 rounded-md"
               >
                 <Link href='/Sign-in'>Sign-in</Link>
               </button>
               <button 
-                className="bg-red-500 text-white px-4 py-2 rounded-md"
+                className="bg-red-500 text-black px-4 py-2 rounded-md"
               >
                 <Link href='/Sign-up'>Sign-up</Link>
               </button>
@@ -81,9 +81,9 @@ export default function Navbar() {
 
         {/* Mobile Dropdown Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-white shadow-md absolute top-16 left-0 w-full p-4 flex flex-col space-y-4 z-50">
+          <div className="lg:hidden bg-white text-black shadow-md absolute top-16 left-0 w-full p-4 flex flex-col space-y-4 z-50">
             <NavLink href="/membership">Become a Member</NavLink>
-            <NavLink href="/business">OYO for Business</NavLink>
+            <NavLink href="/business">HB for Business</NavLink>
             <NavLink href="/list-property">List your property</NavLink>
             <NavLink href="tel:0123-6201611">0123-6201611</NavLink>
             <NavLink href='/Sign-in'>Sign-in</NavLink>

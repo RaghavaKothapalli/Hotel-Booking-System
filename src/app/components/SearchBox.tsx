@@ -31,7 +31,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
             />
           </div>
           <div className="flex-1 min-w-[200px]">
-            <label className="block text-gray-700">Location</label>
+            <label className="block text-black">Location</label>
             <input
               type="text"
               value={location}
